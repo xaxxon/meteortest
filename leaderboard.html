@@ -1,54 +1,34 @@
 <head>
-  <title>Leaderboard</title>
+  <title>Poller</title>
 </head>
 
 <body>
-  <div id="outer">
-    {{> leaderboard}}
-  </div>
 </body>
 
-<template name="leaderboard">
-  <div class="leaderboard">
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-	
-  </div>
-
-  {{#if selected_name}}
-  <div class="details">
-    <div class="name">{{selected_name}}</div>
-    <input type="button" class="inc" value="Give 5 points" />
-  </div>
-  {{else}}
-  <div class="none">Click a player to select</div>
-  {{/if}}
-  
-  <div>
-	  <form id='add_player_form'>
-		  <input id='add_player'><label for='add_player'>add player</label>
-	  </form>
-  </div>
-  
-  <input type='checkbox' id='sort_checkbox' checked=
-  {{#if sort_by_name}}
-  	true
-  {{else}}
-  	false
-  {{/if}}
-  ><label for='sort_checkbox'>sort by name</label>
-  
-  <canvas id='mycanvas' width=300 height=300></canvas>
-  {{draw_chart}}
-  
+<template name="create">
+	<input type='text' id='poll_name'>
+	<div id='create_poll'>
+		Create Poll
+	</div>
+	{{> show_poll_link}}
 </template>
 
-<template name="player">
-  <div class="player {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
-	<span class="delete">X</span>
-  </div>
+<template name='show_poll_link'>
+	{{#if poll_id}}
+		<a href='/results/{{poll_id}}'>LINK TO POLL</a>
+	{{/if}}
 </template>
 
+
+<template name="results">
+	Show results
+	{{#each results}}
+		{{> result_line}}
+	{{/each}}
+</template>
+
+<template name='result_line'>
+	<div id='{{name}}'>
+		{{name}}: {{votes}}
+	</div>
+</template>
