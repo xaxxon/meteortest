@@ -89,8 +89,6 @@ if Meteor.isClient
 
 
 	$ ->
-		console.log "trying to observe changes"
-		Players.find({}).observe changed: draw_chart, removed: draw_chart
 
 
 		
@@ -104,8 +102,8 @@ if Meteor.isClient
 
 	
 	Template.leaderboard.rendered = ->
-			console.log "template.leaderboard.rendered called, about to call draw_chart()"
-			draw_chart()
+		console.log "trying to observe changes"
+		Players.find({}).observe changed: draw_chart, removed: draw_chart
 
 
 	Template.leaderboard.selected_name = ->
