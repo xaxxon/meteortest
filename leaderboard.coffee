@@ -103,7 +103,7 @@ if Meteor.isClient
 	
 	Template.leaderboard.rendered = ->
 		console.log "trying to observe changes"
-		Players.find({}).observe changed: draw_chart, removed: draw_chart
+		Players.find({}).observe changed: draw_chart, removed: draw_chart, added: draw_chart
 
 
 	Template.leaderboard.selected_name = ->
